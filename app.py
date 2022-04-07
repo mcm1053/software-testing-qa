@@ -22,3 +22,4 @@ def bmi():
 
 if __name__ == '__main__':
     bmi()
+    start_server(main, port=8080, websocket_ping_interval=30)
