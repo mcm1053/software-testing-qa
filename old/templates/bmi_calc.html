@@ -30,8 +30,9 @@
 
 <div class="main">
 	{% if bmi %}
-	    <p>
+		    <p>
         {% print("Your BMI is {}.".format(bmi)) %}
+				{% print("You are {}.".format(status)) %}
         </p>
 	{% endif %}
 </div>
