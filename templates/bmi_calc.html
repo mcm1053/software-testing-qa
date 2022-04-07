@@ -32,6 +32,10 @@
 	{% if bmi %}
 	    <p>
         {% print("Your BMI is {}.".format(bmi)) %}
+		{% if bmi > 0 %}
+			<p>
+			{% print("Your BMI is {}.".format(bmi)) %}
+			</p>
         </p>
 	{% endif %}
 </div>
