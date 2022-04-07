@@ -15,7 +15,8 @@ def index():
 	                        bmi=bmi)
 
 def calc_bmi(weight, height):
-    return round((weight / ((height / 100) ** 2)), 2)
+    #  return round((weight / ((height / 100) ** 2)), 2)
+    return round (((weight * 703) / (height * height)), 2)
 
 if __name__ == '__main__':
     app.run()
