@@ -1,26 +1,41 @@
-# A simple script to calculate BMI
-from pywebio.input import input, FLOAT
-from pywebio.output import put_text
-from pywebio import start_server
+import streamlit as st 
+from PIL import Image
 
 
-def bmi():
-    height = input("Input your height(in)：", type=FLOAT)
-    weight = input("Input your weight(lbs)：", type=FLOAT)
+st.title("This is My BMI Calculator")
 
-    # BMI = weight / (height / 100) ** 2
-    BMI = round(((weight * 703) / (height * height)), 2)
+# Introduction
 
-    top_status = [(16, 'Severely underweight'), (18.5, 'Underweight'),
-                  (25, 'Normal'), (30, 'Overweight'),
-                  (35, 'Moderately obese'), (float('inf'), 'Severely obese')]
+st.subheader("Introduction")
 
-    for top, status in top_status:
-        if BMI <= top:
-            put_text('Your BMI: %.1f. Category: %s' % (BMI, status))
-            break
+st.text("""
+BMI is a person’s weight in kilograms divided by the square of height in meters. 
+A high BMI can indicate high body fatness.
+
+If your BMI is less than 18.5, it falls within the underweight range.
+If your BMI is 18.5 to <25, it falls within the healthy weight range.
+If your BMI is 25.0 to <30, it falls within the overweight range.
+If your BMI is 30.0 or higher, it falls within the obesity range.
+
+Obesity is frequently subdivided into categories:
+
+Class 1: BMI of 30 to < 35
+Class 2: BMI of 35 to < 40
+Class 3: BMI of 40 or higher. 
+Class 3 obesity is sometimes categorized as “severe” obesity.
+
+Credits: https://www.cdc.gov/obesity/adult/defining.html
+
+	""")
 
 
-if __name__ == '__main__':
-    bmi()
-    start_server(main, port=8080, websocket_ping_interval=30)
+# Input
+
+weight = st.number_input("Enter your Weight in KG", step = 0.1)
+
+height = st.number_input("Enter your Height in Meters")
+
+
+bmi = weight/(height)**2
+
+st.success(f"Your BMI is {bmi}")
